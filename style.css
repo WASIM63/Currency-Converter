@@ -1,0 +1,99 @@
+*{
+    padding:0;
+    margin:0;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:tan;
+}
+.container{
+    background-color:white;
+    position:absolute;
+    top:100px;
+    height:60vh;
+    width:50vh;
+    border:2px;
+    border-radius: 20px;
+    padding:20px;
+}
+@media screen and (max-width:600px){
+    .container{
+        width:35vh;
+        height:50vh;
+    }
+}
+h2{
+    text-align: center;
+    margin:2px;
+}
+p{
+    margin:2px;
+}
+form{
+    margin:3rem 0 2rem 0;
+}
+.inputarea{
+    display:flex;
+    justify-content:space-between;
+    align-items: center;
+}
+img{
+    height:40px;
+    width:50px;
+}
+.toCountryName,.fromCountryName{
+    font-size: 0.7rem;
+    width:100%;
+}
+.inputdiv{
+    height:40px;
+    width:80%;
+    display: flex;
+    justify-content:space-between;
+}
+input,.input2{
+    padding-left: 10px;
+    height:40px;
+    width:100%;
+    border:1px solid gray;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 1rem;
+}
+
+.dropdown{
+    height:40px;
+    width:50px;
+    border:1px solid gray;
+    border-radius: 5px;
+    box-sizing: border-box;
+    cursor:pointer;
+}
+.arrowcontainer{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+.arrow{
+    min-height: 5px;
+    font-size: 2rem;
+    border: none;
+    background-color:white;
+    cursor:pointer;
+}
+.msg{
+    text-align: center;
+    height:50px;
+    padding-top: 40px;
+}
+#btn{
+    font-size:16px;
+    height:40px;
+    width:100%;
+    border:1px solid black;
+    border-radius: 10px;
+    background-color: aqua;
+    cursor:pointer;
+}

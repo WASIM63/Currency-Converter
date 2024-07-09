@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h2>Currency Converter</h2>
+        <form action="">
+            <div class="from">
+                <p>From</p>
+                <div class="container1">
+                    <div class="inputarea">
+                        <img src="" alt="" class="flag1">
+                        <div class="inputdiv inp1">
+                            <input type="number" step="any" value="0" class="input1">
+                            <select class="dropdown" name="countryname" id="country_code1">
+                                <option value="US">USD</option>
+                                <option value="IN">INR</option>
+                            </select>
+                        </div>
+                    </div>
+                    <p class="fromCountryName para"></p>
+                </div>
+            </div>
+            <div class="arrowcontainer">
+                <div class="arrow">↑↓</div>
+            </div>
+            <div class="to">
+                <p>To</p>
+                <div class="container2">
+                    <div class="inputarea">
+                        <img src="" alt="" class="flag2">
+                        <div class="inputdiv inp2">
+                            <input type="text" step="any" value="0" class="input2">
+                            <select class="dropdown" name="countryname" id="country_code2">
+                                <option value="IN">INR</option>
+                                <option value="US">USD</option>
+                            </select>
+                        </div>
+                    </div>
+                    <p class="toCountryName para"></p>
+                </div>
+            </div>
+            <div class="msg"></div>
+            <button id="btn">Exchange the currency</button>
+        </form>
+    </div>
+    <script src="flag1.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

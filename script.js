@@ -11,28 +11,7 @@ let arrow = document.querySelector(".arrow");
 let container1 = document.querySelector(".container1");
 let container2 = document.querySelector(".container2");
 let inputarea1, inputarea2;
-var ans = 0;
-
-
-// 🟠🟠🟠 currency converter api
-async function currency(from, to, amount) {
-    const url = `https://currency-converter18.p.rapidapi.com/api/v1/convert?from=${from}&to=${to}&amount=${amount}`;
-    const options = {
-        method: 'GET',
-        headers: {
-            'x-rapidapi-key': 'adc1b42245msh4906e98d089216ep193730jsn2aff5af9b11c',
-            'x-rapidapi-host': 'currency-converter18.p.rapidapi.com'
-        }
-    };
-    const response = await fetch(url, options);
-    const result = await response.json();
-    console.log(result);
-    ans = result.result.convertedAmount;
-    msg.innerText = `${amount} ${from} = ${ans} ${to}`
-    fromCountryName.innerText = countryName[country_code1.value];
-    toCountryName.innerText = countryName[country_code2.value];
-}
-
+let ans=0;
 
 // 🟠🟠🟠 dropdown menu
 let dropdown = document.querySelectorAll(".dropdown");
@@ -45,17 +24,48 @@ for (let i of dropdown) {
         option.value = code;
     }
 }
+//🟠🟠🟠 Selecting the dropdown country
+let fromselect=container1.querySelector(".dropdown")[0];
+let toselect = container2.querySelector(".dropdown")[0];
+
+// 🟠🟠🟠 currency converter api
+async function currency(from, to) {
+    //console.log("API called");
+    const url = `https://currency-converter18.p.rapidapi.com/api/v1/convert?from=${from}&to=${to}&amount=${1}`;
+    const options = {
+        method: 'GET',
+        headers: {
+            'x-rapidapi-key': 'adc1b42245msh4906e98d089216ep193730jsn2aff5af9b11c',
+            'x-rapidapi-host': 'currency-converter18.p.rapidapi.com'
+        }
+    };
+    const response = await fetch(url, options);
+    const result = await response.json();
+    //console.log(result);
+    ans = result.result.convertedAmount;
+    //console.log(ans);
+    return ans;
+}
+//console.log(fromselect,"\t", toselect);//⚠️
+async function apicall(){
+    fromselect = container1.querySelector(".dropdown");
+    toselect = container2.querySelector(".dropdown");
+    await currency(countryList[fromselect.value], countryList[toselect.value]);
+    ExchangeBtn();
+}
+apicall();
 
 // 🟠🟠🟠 Exchange btn
 function ExchangeBtn() {
-    let fromselect = container1.querySelector(".dropdown");
-    let toselect = container2.querySelector(".dropdown");
-    let frominput = container1.querySelector("input");
+    //console.log("Exc btn clicked",ans);
+    let frominput= container1.querySelector("input");
     let output = container2.querySelector("input");
-    let tt = currency(countryList[fromselect.value], countryList[toselect.value], frominput.value);
-    tt.then(() => {
-        output.value = ans;
-    })
+    output.value =ans*(frominput.value);
+    fromselect = container1.querySelector(".dropdown");
+    toselect = container2.querySelector(".dropdown");
+    msg.innerText =`${frominput.value} ${countryList[fromselect.value]} = ${output.value} ${countryList[toselect.value]}`;
+    fromCountryName.innerText = countryName[country_code1.value];
+    toCountryName.innerText =countryName[country_code2.value];
     flags();
 }
 let btn = document.querySelector("#btn");
@@ -66,23 +76,16 @@ btn.addEventListener("click", (evt) => {
 
 // 🟠🟠🟠 onchange
 container1.querySelector(".dropdown").addEventListener("change",()=>{
-    ExchangeBtn();
+    apicall();
 })
 container2.querySelector(".dropdown").addEventListener("change",()=>{
-    ExchangeBtn();
+    apicall();
 })
-let timeoutId;
 container1.querySelector("input").addEventListener("input",()=>{
-    clearTimeout(timeoutId);
-    timeoutId=setTimeout(()=>{
         ExchangeBtn();
-    },800);
 })
 container2.querySelector("input").addEventListener("input",()=>{
-    clearTimeout(timeoutId);
-    timeoutId=setTimeout(()=>{
         ExchangeBtn();
-    },800);
 })
 
 
@@ -104,12 +107,11 @@ function arrowbtn() {
     container1.appendChild(p2);
     container2.appendChild(inputarea1);
     container2.appendChild(p1);
+    ans=1/ans;
+    ExchangeBtn();
 }
 arrow.addEventListener("click", (evt) => {
     evt.preventDefault();
-    console.log("clicked");
+    //console.log("clicked");
     arrowbtn();
 })
-
-
-
